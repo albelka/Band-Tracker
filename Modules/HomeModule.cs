@@ -56,7 +56,6 @@ namespace BandTracker
           Band selectedBand = Band.Find(bandId);
           selectedVenue.AddBand(selectedBand);
           var bands = selectedVenue.GetBands();
-          Console.WriteLine(bands[0]);
           return View["success.cshtml"];
         };
 
