@@ -10,19 +10,19 @@
 * Input: "CBGB"
 * Output: "CBGB"
 
-* Behavior: The program can display a list of bands.
+* Behavior: The program can display a list of venues.
 * Input: "CBGB", "The Roseland"
 * Output: "CBGB, The Roseland"
 
 * Behavior: The program can display a particular band.
-* Input: "CBGB", "The Roseland" Find: CBGB
-* Output: ""CBGB"
+* Input: "CBGB, The Roseland" Find: CBGB
+* Output: "CBGB"
 
-* Behavior: The program can update a Band's information.
+* Behavior: The program can update a venue's information.
 * Input: "The Roseland"
 * Output: "The Roseland Theatre"
 
-* Behavior: The program can delete a band.
+* Behavior: The program can delete a venue.
 * Input: "CBGB, The Roseland" Delete: CBGB
 * Output: "The Roseland"
 
@@ -34,6 +34,14 @@
 * Input: "Wilco"
 * Output: "Played at: CBGB. The Roseland"
 
+* Behavior: The program can display bands that have played at a certain venue.
+* Input: "CBGB"
+* Output: "Wilco, John Prine"
+
+* Behavior: The program can display venues where a band has played.
+* Input: "Wilco"
+* Output: "CBGBs, The Roseland"
+
 
 ## Setup/Installation Requirements
 * Used the following commands to create the database for this app:
@@ -44,7 +52,7 @@
 * >GO
 * >CREATE TABLE venues (id INT IDENTITY(1,1), name VARCHAR(255));
 * >CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(255));
-* >CREATE TABLE shows (id INT IDENTITY(1,1), band_id int, venue_id int);
+* >CREATE TABLE shows (id INT IDENTITY(1,1), band_id INT, venue_id INT);
 * >GO
 
 * Clone this repository or download it to your computer.
