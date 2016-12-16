@@ -66,6 +66,21 @@ namespace BandTracker
       Assert.Equal(testVenue, foundVenue);
     }
 
+    [Fact]
+    public void Test_Deletes_Venue()
+    {
+      Venue newVenue = new Venue("Dante's Inferno");
+
+      newVenue.Save();
+      newVenue.Delete();
+
+      List<Venue> expected = new List<Venue>{};
+      List<Venue> result = Venue.GetAll();
+
+      Assert.Equal(expected, result);
+
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
