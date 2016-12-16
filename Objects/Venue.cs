@@ -18,6 +18,16 @@ namespace BandTracker
       _id = Id;
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
+
+    public string GetName()
+    {
+      return _name;
+    }
+
     public override bool Equals(System.Object otherVenue)
     {
       if (!(otherVenue is Venue))
@@ -86,14 +96,45 @@ namespace BandTracker
       return allVenues;
     }
 
-    public int GetId()
+
+    public static Venue Find(int id)
     {
-      return _id;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
+      SqlParameter venueIdParameter = new SqlParameter("@VenueId", id.ToString());
+      cmd.Parameters.Add(venueIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundVenueId = 0;
+      string foundVenueName = null;
+      while(rdr.Read())
+      {
+        foundVenueId = rdr.GetInt32(0);
+        foundVenueName = rdr.GetString(1);
+      }
+      Venue foundVenue = new Venue(foundVenueName, foundVenueId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return foundVenue;
     }
 
-    public string GetName()
+    public static void DeleteAll()
     {
-      return _name;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
     }
   }
 }
