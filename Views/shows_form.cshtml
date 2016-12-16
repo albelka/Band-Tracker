@@ -1,0 +1,32 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+  var venues = Model["venues"];
+  var bands = Model["bands"];
+}
+<h3>Book a show</h3>
+<div class="row">
+  <form method="post">
+    <div class="col-md-5">
+      <select class="form-control" name="band" placeholder="band">
+        <option disabled selected>Band</option>
+        @foreach(var band in bands)
+        {
+          <option value="@band.GetId()">@band.GetName()</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-5">
+      <select class="form-control" name="venue" placeholder="venue">
+        <option disabled selected>Venue</option>
+        @foreach(var venue in venues)
+        {
+          <option value="@venue.GetId()">@venue.GetName()</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" formaction="/shows" class="btn btn-warning">Go</button>
+    </div>
+  </form>
+</div>
+<br>

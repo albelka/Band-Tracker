@@ -1,0 +1,27 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+@if (@Model.Count == 0)
+{
+  <p>No shows have been booked yet.</p>
+}
+else{
+  <h2> Shows: </h2>
+  <ul>
+  @foreach (var venue in Model)
+  {
+    if(@venue.GetBands() == null)
+    {
+      <p>none</p>
+    }
+    else
+    {
+      <li><h3>@venue.GetName()  is showing @venue.GetBands()<h3> </li>
+    }
+  }
+  </ul>
+}
+
+<br>
+<p><a href="/shows/new">Book a show</a></p>
+<p><a href="/">Return home</a></p>

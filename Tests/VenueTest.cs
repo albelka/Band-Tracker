@@ -67,6 +67,20 @@ namespace BandTracker
     }
 
     [Fact]
+    public void Update_UpdatesDatabase_True()
+    {
+      Venue newVenue = new Venue("Doug Fur");
+      newVenue.Save();
+      newVenue.Update("Doug Fir");
+
+      Venue testVenue = new Venue("Doug Fir");
+      Venue result = Venue.Find(newVenue.GetId());
+
+      Assert.Equal(testVenue, result);
+    }
+
+
+    [Fact]
     public void Test_Deletes_Venue()
     {
       Venue newVenue = new Venue("Dante's Inferno");
