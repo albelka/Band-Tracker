@@ -39,6 +39,20 @@ namespace BandTracker
     }
 
     [Fact]
+    public void Find_FindsBandInDatabase_true()
+    {
+      //Arrange
+      Band testBand = new Band("Wilco");
+      testBand.Save();
+
+      //Act
+      Band foundBand = Band.Find(testBand.GetId());
+
+      //Assert
+      Assert.Equal(testBand, foundBand);
+    }
+
+    [Fact]
     public void Save_SavesBandToDatabase()
     {
       //Arrange
