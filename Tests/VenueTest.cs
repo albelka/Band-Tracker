@@ -81,9 +81,38 @@ namespace BandTracker
 
     }
 
+    [Fact]
+    public void AddBand_AddsBandToVenue_True()
+    {
+      Band newBand = new Band("Wilco");
+      newBand.Save();
+      Venue newVenue = new Venue("CBGB");
+      newVenue.Save();
+      newVenue.AddBand(newBand);
+      List<Band> expected = new List<Band>{newBand};
+      List<Band> result = newVenue.GetBands();
+
+      Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void GetBands_RetrievesBandsOfAGivenVenue()
+    {
+      Band newBand = new Band("Wilco");
+      newBand.Save();
+      Venue newVenue = new Venue("CBGB");
+      newVenue.Save();
+      newVenue.AddBand(newBand);
+      List<Band> expected = new List<Band>{newBand};
+      List<Band> result = newVenue.GetBands();
+
+      Assert.Equal(expected, result);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
+      Band.DeleteAll();
     }
   }
 }
