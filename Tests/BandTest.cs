@@ -66,6 +66,20 @@ namespace BandTracker
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void GetVenues_RetrievesVenuesOfAGivenBand()
+    {
+      Band newBand = new Band("Wilco");
+      newBand.Save();
+      Venue newVenue = new Venue("CBGB");
+      newVenue.Save();
+      newVenue.AddBand(newBand);
+      List<Venue> expected = new List<Venue>{newVenue};
+      List<Venue> result = newBand.GetVenues();
+
+      Assert.Equal(expected, result);
+    }
+
     public void Dispose()
     {
       Band.DeleteAll();
