@@ -1,16 +1,13 @@
+
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNet.Builder;
-using Nancy;
 using Nancy.Owin;
+using Nancy;
 using Nancy.ViewEngines.Razor;
 
-namespace Registrar
+namespace BandTracker
 {
-  public static class DBConfiguration
-    {
-        public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker;Integrated Security=SSPI;";
-    }
   public class Startup
   {
     public void Configure(IApplicationBuilder app)
@@ -18,6 +15,7 @@ namespace Registrar
       app.UseOwin(x => x.UseNancy());
     }
   }
+
   public class CustomRootPathProvider : IRootPathProvider
   {
     public string GetRootPath()
@@ -25,6 +23,7 @@ namespace Registrar
       return Directory.GetCurrentDirectory();
     }
   }
+
   public class RazorConfig : IRazorConfiguration
   {
     public IEnumerable<string> GetAssemblyNames()
@@ -41,5 +40,10 @@ namespace Registrar
     {
       get { return false; }
     }
+  }
+
+  public static class DBConfiguration
+  {
+      public static string ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker;Integrated Security=SSPI;";
   }
 }
